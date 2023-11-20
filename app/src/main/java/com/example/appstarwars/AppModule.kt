@@ -45,5 +45,11 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun providesApiService(): ApiService{
+        return ApiConfig.getService()
+    }
 }
 
