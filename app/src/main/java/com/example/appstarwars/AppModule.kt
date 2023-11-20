@@ -36,5 +36,14 @@ object AppModule {
     fun provideCharacterRepository(characterDao: CharacterDao): CharacterRepository {
         return CharacterRepository(characterDao)
     }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit() : Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://swapi.dev/api")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 }
 
