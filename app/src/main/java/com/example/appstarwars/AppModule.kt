@@ -31,11 +31,6 @@ object AppModule {
         return characterDatabase.characterDao()
     }
 
-    @Provides
-    @Singleton
-    fun provideCharacterRepository(characterDao: CharacterDao): CharacterRepository {
-        return CharacterRepository(characterDao)
-    }
 
     @Provides
     @Singleton

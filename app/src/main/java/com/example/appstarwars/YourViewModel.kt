@@ -19,12 +19,9 @@ class YourViewModel @Inject constructor(private val characterRepository: Charact
     private val _filteredData = MutableLiveData<List<CharacterEntity>>()
     val filteredData: LiveData<List<CharacterEntity>> get() = _filteredData
 
-    init {
-        fetchData()
-    }
-
-    private fun fetchData() {
+    fun fetchData() {
         viewModelScope.launch {
+            characterRepository.fetchData()
             // Use observe to observe changes in LiveData
             characterRepository.getAllCharacters().observeForever { data ->
                 _filteredData.postValue(data)
@@ -34,10 +31,10 @@ class YourViewModel @Inject constructor(private val characterRepository: Charact
 
     fun filterData(searchText: String) {
         viewModelScope.launch {
-            // Use observe to observe changes in LiveData
             characterRepository.searchCharacters("%$searchText%").observeForever { data ->
                 _filteredData.postValue(data)
             }
         }
     }
 }
+

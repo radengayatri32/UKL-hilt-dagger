@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(convertedData)
         }
 
+        viewModel.fetchData()
+
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
